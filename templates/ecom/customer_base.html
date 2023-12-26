@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: #fff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #navbar {
+            background-color: #ff3f6c; /* Myntra's primary color */
+            color: #000;
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            display: inline-block; /* Added to make it inline */
+            margin-right: 20px; /* Adjust margin as needed */
+        }
+        .navbar-brand:hover {
+            color: #fff;
+        }
+
+        .navbar-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+        }
+
+        .navbar-links li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-links a:hover {
+            color: #000;
+        }
+
+        .search-container {
+            margin-top: 10px;
+        }
+
+        .navbar-input {
+            padding: 10px;
+            border-radius: 2px 0 0 2px;
+            border: 0 none;
+            outline: 0 none;
+            font-size: 15px;
+            width: 70%; /* Adjust the width as needed */
+            display: inline-block; /* Added to make it inline */
+        }
+
+        .navbar-button {
+            background-color: #ff3f6c;
+            border: 1px solid #ff3f6c;
+            border-radius: 0 2px 2px 0;
+            color: #fff;
+            padding: 10px 0;
+            height: 43px;
+            cursor: pointer;
+            width: 20%; /* Adjust the width as needed */
+            display: inline-block; /* Added to make it inline */
+        }
+
+        .cart-button {
+            background-color: #ff3f6c;
+            box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .23), inset 1px 1px 0 0 hsla(0, 0%, 100%, .2);
+            padding: 10px 0;
+            text-align: center;
+            height: 41px;
+            border-radius: 2px;
+            font-weight: 500;
+            width: 120px;
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            color: inherit;
+            border: none;
+            outline: none;
+        }
+
+        .cart-button:hover {
+            text-decoration: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .cart-svg {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .item-number {
+            border-radius: 3px;
+            background-color: #ff3f6c;
+            height: 20px;
+            padding: 3px 6px;
+            font-weight: 500;
+            display: inline-block;
+            color: #fff;
+            line-height: 12px;
+            margin-left: 10px;
+        }
+
+        footer {
+            padding: 20px 0;
+            background-color: #ff3f6c;
+            margin: 0;
+            text-align: center;
+        }
+
+        .fa {
+            font-size: 23px;
+            width: 60px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px 2px;
+            border-radius: 50%;
+            color: #fff;
+        }
+
+        .fa:hover {
+            opacity: 0.5;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="/" class="navbar-brand">Clothing Store</a>
+                </div>
+                <div class="col-md-8">
+                    <ul class="navbar-links">
+                        <li><a href="/my-order">Orders</a></li>
+                        <li><a href="/my-profile">Profile</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/send-feedback">Send Feedback</a></li>
+                                <li><a href="/contactus">Contact Us</a></li>
+                                <li><a href="/aboutus">About Us</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <a href="/cart" class="cart-button">
+                        <svg class="cart-svg" width="16" height="16" viewBox="0 0 16 16">
+                            <!-- Your SVG path here -->
+                        </svg> Cart <span class="item-number">{{ product_count_in_cart }}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="row search-container">
+                <form action="/search" method="get">
+                    <input class="navbar-input" type="search" placeholder="Search for Products, Brands and more" name="query" id="query">
+                    <button class="navbar-button" type="submit" style="border: 1px solid beige;">Search</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content start -->
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- Content end -->
+
+    <footer>
+        <p>
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-whatsapp"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-twitter"></a>
+        </p>
+    </footer>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
